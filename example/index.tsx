@@ -1,0 +1,50 @@
+import 'react-app-polyfill/ie11';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { HasuraResourceContext, HasuraResource, HasuraResourceContextState, HasuraResourceList } from '../.';
+
+const hasuraResourceConfig: HasuraResourceContextState = {
+  endpoint: 'https://react-hasure-resource-data.herokuapp.com',
+  config: {
+    primaryKey: {}
+  }
+}
+
+const App = () => {
+  return (
+    <HasuraResourceContext.Provider value={hasuraResourceConfig}>
+      <h1>HasuraResource</h1>
+      <HasuraResource
+        id="bbfc3dff-e14c-466d-9ef9-62117fe58e60"
+        tableName="student"
+        args={{
+          columns: ["*", { name: "course", columns: [ "name" ] }]
+        }}
+        render={(props) => {
+          return (
+            <React.Fragment>
+              <pre>{JSON.stringify(props, null, 2)}</pre>
+            </React.Fragment>
+          )
+        }}
+      />
+      <hr />
+      <h1>HasuraResourceList</h1>
+      <HasuraResourceList
+        tableName="student"
+        args={{
+          columns: ["*"],
+        }}
+        render={(props) => {
+          return (
+            <React.Fragment>
+              <pre>{JSON.stringify(props, null, 2)}</pre>
+            </React.Fragment>
+          )
+        }}
+      />
+    </HasuraResourceContext.Provider>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));

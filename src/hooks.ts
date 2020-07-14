@@ -10,8 +10,8 @@ export const DEFAULT_PRIMARY_KEY = 'id';
 const getPrimaryKey = (tableName: string, config: HasuraResourceContextConfig): string => {
   let primaryKey = DEFAULT_PRIMARY_KEY;
 
-  if (config && config["primaryKey"][tableName]) {
-    primaryKey = config["primaryKey"][tableName];
+  if (config && config['primaryKey'][tableName]) {
+    primaryKey = config['primaryKey'][tableName];
   }
   return primaryKey;
 };
@@ -20,12 +20,23 @@ export function useGetResource<TResult>(hookProps: BaseGetResourceHookProps, que
   const { id, tableName } = hookProps;
   const { endpoint, config, headers } = useContext(HasuraResourceContext);
   const primaryKey = getPrimaryKey(tableName, config);
-  return useQuery<TResult, [string, any]>([`${tableName}-${id}`, { ...hookProps, primaryKey, endpoint, headers, config }], getResource as any, queryOptions)
-};
+  return useQuery<TResult, [string, any]>(
+    [`${tableName}-${id}`, { ...hookProps, primaryKey, endpoint, headers, config }],
+    getResource as any,
+    queryOptions
+  );
+}
 
-export function useGetResourceList<TResult = object[]>(hookProps: BaseGetResourceListHookProps, queryOptions: QueryOptions<TResult> = {}) {
+export function useGetResourceList<TResult = object[]>(
+  hookProps: BaseGetResourceListHookProps,
+  queryOptions: QueryOptions<TResult> = {}
+) {
   const { tableName } = hookProps;
   const { endpoint, config, headers } = useContext(HasuraResourceContext);
   const primaryKey = getPrimaryKey(tableName, config);
-  return useQuery<TResult, [string, any]>([`${tableName}`, { ...hookProps, primaryKey, endpoint, headers, config }], getResourceList as any, queryOptions)
-};
+  return useQuery<TResult, [string, any]>(
+    [`${tableName}`, { ...hookProps, primaryKey, endpoint, headers, config }],
+    getResourceList as any,
+    queryOptions
+  );
+}

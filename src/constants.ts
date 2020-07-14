@@ -1,3 +1,3 @@
 import { HasuraQueryColumn } from 'props';
 
-export const DEFAULT_COLUMNS_PROP: HasuraQueryColumn[] = ["*"]
+export const DEFAULT_COLUMNS_PROP: HasuraQueryColumn[] = ['*'];

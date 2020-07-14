@@ -2,52 +2,52 @@
 // define hasura json api queries
 const bulkQuery = {
   type: 'bulk',
-  args: []
+  args: [],
 };
 
 const selectQuery = {
   type: 'select',
   args: {
-    table: {'schema': '', 'name': ''},
-    columns: ['*']
-  }
+    table: { schema: '', name: '' },
+    columns: ['*'],
+  },
 };
 
 const countQuery = {
   type: 'count',
   args: {
-    table: {'schema': '', 'name': ''},
-    where: {}
-  }
+    table: { schema: '', name: '' },
+    where: {},
+  },
 };
 
 const insertQuery = {
   type: 'insert',
   args: {
-    table: {'schema': '', 'name': ''},
+    table: { schema: '', name: '' },
     objects: [],
-    returning: []
-  }
+    returning: [],
+  },
 };
 
 const updateQuery = {
   type: 'update',
   args: {
-    table: {'schema': '', 'name': ''},
+    table: { schema: '', name: '' },
     $set: {},
     where: {},
-    returning: []
-  }
+    returning: [],
+  },
 };
 
 const deleteQuery = {
   type: 'delete',
   args: {
-    table: {'schema': '', 'name': ''},
+    table: { schema: '', name: '' },
     $set: {},
     where: {},
-    returning: []
-  }
+    returning: [],
+  },
 };
 
 export { bulkQuery, selectQuery, countQuery, insertQuery, updateQuery, deleteQuery };

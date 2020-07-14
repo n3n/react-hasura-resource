@@ -48,5 +48,8 @@
   "dependencies": {
     "hooks": "^0.3.2",
     "react-query": "^2.4.16"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { HasuraResourceContext, HasuraResource, HasuraResourceContextState, HasuraResourceList } from '../.';
 
 const hasuraResourceConfig: HasuraResourceContextState = {
-  endpoint: 'https://react-hasure-resource-data.herokuapp.com',
+  endpoint: 'https://react-hasura-resource-data.herokuapp.com',
   config: {
     primaryKey: {}
   }

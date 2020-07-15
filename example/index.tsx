@@ -32,16 +32,17 @@ const App = () => {
       <h1>HasuraResourceList</h1>
       <HasuraResourceList
         tableName="student"
-        args={{
-          columns: ["*"],
-        }}
-        render={(props) => {
-          return (
-            <React.Fragment>
-              <pre>{JSON.stringify(props, null, 2)}</pre>
-            </React.Fragment>
+        render={({ data, totalCount, status }) => (
+          status === 'success' ? (
+            <ul>
+              {data?.map(student => (
+                <li key={student.id}>{student.name}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>Loading...</p>
           )
-        }}
+        )}
       />
     </HasuraResourceContext.Provider>
   );

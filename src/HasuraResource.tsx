@@ -5,7 +5,7 @@ import { HasuraResourceProps } from './props';
 
 export const HasuraResource = ({ id, tableName, render, args, queryOptions }: HasuraResourceProps) => {
   const Render = memo(() => {
-    const { data, status, error } = useGetResource<object>({ id, tableName, args }, queryOptions);
+    const { data, status, error } = useGetResource<any>({ id, tableName, args }, queryOptions);
 
     const memoRender = useMemo(
       () =>

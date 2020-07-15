@@ -72,7 +72,7 @@ export type HasuraQueryColumn = string | HasuraQueryColumnRelationship;
 
 // Resource
 
-export interface HasuraResourceRenderProps<T extends Object = object> extends BaseHasuraRenderProps<T> {
+export interface HasuraResourceRenderProps<T extends any = any> extends BaseHasuraRenderProps<T> {
   data: T | undefined;
   status: FetchStatus;
   error?: Error | null;
@@ -100,7 +100,7 @@ export interface GetResourceFnProps extends BaseGetResourceHookProps {
 
 // Resource List
 
-export interface HasuraResourceListRenderProps<T extends any[] | [] = object[]> extends BaseHasuraRenderProps<T> {
+export interface HasuraResourceListRenderProps<T extends any[] | [] = any[]> extends BaseHasuraRenderProps<T> {
   totalCount: number;
 }
 
@@ -118,7 +118,7 @@ export interface HasuraQueryListArgs extends HasuraQueryArgs {
 export interface HasuraResourceListProps {
   tableName: string;
   render: (props: HasuraResourceListRenderProps) => JSX.Element;
-  queryOptions?: QueryOptions<[object[], { count: number }]>;
+  queryOptions?: QueryOptions<[any[], { count: number }]>;
   args?: HasuraQueryListArgs;
 }
 

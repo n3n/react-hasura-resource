@@ -13,3 +13,35 @@ React Hasura Resource
 ```bash
 $ yarn add react-hasura-resource
 ```
+
+## Example
+
+```typescript
+import { ReactHasuraResourceContext } from 'react-hasura-resource';
+
+const hasuraResourceConfig: HasuraResourceContextState = {
+  endpoint: 'https://react-hasura-resource-data.herokuapp.com',
+  config: {
+    primaryKey: {}
+  }
+}
+
+const App = () => (
+  <HasuraResourceContext.Provider value={hasuraResourceConfig}>
+    <HasuraResourceList
+      tableName="student"
+      render={({ data, status }) => (
+        status === 'success' ? (
+          <ul>
+            {data?.map(student => (
+              <li key={student.id}>{student.name}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>Loading...</p>
+        )
+      )}
+    />
+  </HasuraResourceContext.Provider>
+)
+```

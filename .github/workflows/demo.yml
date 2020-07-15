@@ -53,8 +53,13 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Install dependencies demo
+        run: yarn install --frozen-lockfile
+        working-directory: example
+
       - name: Build demo
-        run: yarn example-build
+        run: yarn build
+        working-directory: example
 
       - name: Deploy demo to gh-pages
         uses: JamesIves/github-pages-deploy-action@3.4.2

@@ -54,9 +54,7 @@ jobs:
         run: yarn build
 
       - name: Build demo
-        run: yarn build
-        with:
-          FOLDER: example
+        run: yarn example-build
 
       - name: Deploy demo to gh-pages
         uses: JamesIves/github-pages-deploy-action@3.4.2

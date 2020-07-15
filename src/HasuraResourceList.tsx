@@ -5,10 +5,7 @@ import { HasuraResourceListProps } from './props';
 
 export const HasuraResourceList = ({ tableName, render, args, queryOptions }: HasuraResourceListProps) => {
   const Render = memo(() => {
-    const { data, status, error } = useGetResourceList<[any[], { count: number }]>(
-      { tableName, args },
-      queryOptions
-    );
+    const { data, status, error } = useGetResourceList<[any[], { count: number }]>({ tableName, args }, queryOptions);
 
     const memoRender = useMemo(() => {
       if (Array.isArray(data) && data.length === 2) {

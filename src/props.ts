@@ -1,4 +1,4 @@
-import { QueryOptions } from 'react-query';
+import { QueryOptions, QueryIdleResult, QueryResult } from 'react-query';
 
 export type FetchStatus = 'loading' | 'success' | 'error' | 'idle';
 
@@ -36,11 +36,7 @@ export type Operator =
   | '_st_intersects_nband_geom'
   | '_st_intersects_geom_nband';
 
-export interface BaseHasuraRenderProps<T> {
-  data: T | undefined;
-  status: FetchStatus;
-  error?: Error | null;
-}
+export interface BaseHasuraRenderProps {}
 
 export type HasuraQueryWhereOperator = {
   [key in Operator]: Partial<HasuraQueryWherePartial>;
@@ -72,10 +68,8 @@ export type HasuraQueryColumn = string | HasuraQueryColumnRelationship;
 
 // Resource
 
-export interface HasuraResourceRenderProps<T extends any = any> extends BaseHasuraRenderProps<T> {
+export interface HasuraResourceRenderProps<T extends any = any> extends BaseHasuraRenderProps, Omit<QueryResult<T>, 'data'> {
   data: T | undefined;
-  status: FetchStatus;
-  error?: Error | null;
 }
 
 export interface HasuraResourceProps {
@@ -100,7 +94,8 @@ export interface GetResourceFnProps extends BaseGetResourceHookProps {
 
 // Resource List
 
-export interface HasuraResourceListRenderProps<T extends any[] | [] = any[]> extends BaseHasuraRenderProps<T> {
+export interface HasuraResourceListRenderProps<T extends any[] | [] = any[]> extends Omit<QueryResult<T>, 'data'> {
+  data: T | undefined;
   totalCount: number;
 }
 

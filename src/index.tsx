@@ -3,3 +3,4 @@ export * from './props';
 export * from './HasuraResource';
 export * from './HasuraResourceList';
 export * from './context';
+export * from './hooks'

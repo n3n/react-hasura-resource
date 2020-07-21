@@ -1,4 +1,4 @@
-import { QueryOptions, QueryIdleResult, QueryResult } from 'react-query';
+import { QueryOptions, QueryResult } from 'react-query';
 
 export type FetchStatus = 'loading' | 'success' | 'error' | 'idle';
 

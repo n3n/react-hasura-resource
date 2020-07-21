@@ -1,13 +1,18 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { HasuraResourceContext, HasuraResource, HasuraResourceContextState, HasuraResourceList } from '../.';
+import { HasuraResourceContext, HasuraResource, HasuraResourceContextState, HasuraResourceList, useGetResourceList } from '../.';
 
 const hasuraResourceConfig: HasuraResourceContextState = {
   endpoint: 'https://react-hasura-resource-data.herokuapp.com',
   config: {
     primaryKey: {}
   }
+}
+
+const HookDemo = () => {
+  const result = useGetResourceList({ tableName: 'student', args: {} })
+  return <pre>{JSON.stringify(result.data, null, 2)}</pre>
 }
 
 const App = () => {
@@ -44,6 +49,8 @@ const App = () => {
           )
         )}
       />
+      <hr />
+      <HookDemo />
     </HasuraResourceContext.Provider>
   );
 };

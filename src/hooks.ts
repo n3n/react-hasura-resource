@@ -27,16 +27,31 @@ export function useGetResource<TResult>(hookProps: BaseGetResourceHookProps, que
   );
 }
 
-export function useGetResourceList<TResult = object[]>(
+export function useGetResourceList<TResult extends [any[] | undefined, { count: number; }] = [any[] | undefined, { count: number; }]>(
   hookProps: BaseGetResourceListHookProps,
   queryOptions: QueryOptions<TResult> = {}
 ) {
   const { tableName } = hookProps;
   const { endpoint, config, headers } = useContext(HasuraResourceContext);
   const primaryKey = getPrimaryKey(tableName, config);
-  return useQuery<TResult, [string, any]>(
+  const { data: payload, ...queryResult } = useQuery<TResult, [string, any]>(
     [`${tableName}`, { ...hookProps, primaryKey, endpoint, headers, config }],
     getResourceList as any,
     queryOptions
   );
+
+  if (payload) {
+    const [data, total] = payload;
+    return {
+      ...queryResult,
+      data: data,
+      totalCount: total.count,
+    }
+  }
+
+  return {
+    ...queryResult,
+    data: undefined,
+    totalCount: 0,
+  }
 }

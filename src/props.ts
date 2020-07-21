@@ -68,7 +68,9 @@ export type HasuraQueryColumn = string | HasuraQueryColumnRelationship;
 
 // Resource
 
-export interface HasuraResourceRenderProps<T extends any = any> extends BaseHasuraRenderProps, Omit<QueryResult<T>, 'data'> {
+export interface HasuraResourceRenderProps<T extends any = any>
+  extends BaseHasuraRenderProps,
+    Omit<QueryResult<T>, 'data'> {
   data: T | undefined;
 }
 
